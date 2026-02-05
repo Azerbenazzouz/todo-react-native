@@ -1,4 +1,4 @@
-import { Text, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, Alert, View } from 'react-native'
 import React, { useContext } from 'react'
 import { Checkbox } from 'react-native-paper'
 import { Todo } from '@/types/todoTypes'
@@ -23,21 +23,25 @@ const Card = ({ todo }: CardProps) => {
         onPress: () => removeTodo(todo.id)
       }
     ]);
-    // removeTodo(todo.id);
   }
   return (
     <TouchableOpacity 
       onPress={() => toggleTodo(todo.id)}
       onLongPress={handleRemoveTodo}
-      activeOpacity={0.5} 
+      activeOpacity={0.7} 
       style={styles.todoCard}>
       <Checkbox.Item 
         label="" 
         status={todo.completed ? "checked" : "unchecked"} 
         onPress={() => toggleTodo(todo.id)}
+        color="#4F46E5"
       />
-      <Text style={styles.todoTitle}>{todo.title}</Text>
-      <Text>{new Date(todo.timeStamp!).toLocaleString()}</Text>
+      <View style={styles.textContainer}>
+        <Text style={[styles.todoTitle, todo.completed && styles.todoTitleCompleted]} numberOfLines={1}>
+            {todo.title}
+        </Text>
+        <Text style={styles.timeStamp}>{new Date(todo.timeStamp!).toLocaleString()}</Text>
+      </View>
     </TouchableOpacity>
   )
 }
@@ -48,16 +52,32 @@ const styles = StyleSheet.create({
   todoCard: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 10,
-    paddingVertical: 30,
-    marginVertical: 10,
-    backgroundColor: "#f9f9f9",
-    borderRadius: 5,
-    elevation: 2,
+    padding: 16,
+    marginVertical: 8,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  textContainer: {
+    flex: 1,
+    marginLeft: 4,
   },
   todoTitle: {
-    fontSize: 18,
-    fontWeight: "500",
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#1F2937",
+    marginBottom: 4,
+  },
+  todoTitleCompleted: {
+    color: "#9CA3AF",
+    textDecorationLine: "line-through",
+  },
+  timeStamp: {
+    fontSize: 12,
+    color: "#6B7280",
   }
 });

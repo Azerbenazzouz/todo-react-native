@@ -22,17 +22,27 @@ export default AppButton
 
 const styles = StyleSheet.create({
   createTodoButton: {
-    backgroundColor: "#000",
-    paddingHorizontal: 10,
-    paddingVertical: 20,
+    backgroundColor: "#4F46E5",
+    paddingVertical: 16,
+    paddingHorizontal: 24,
     margin: 10,
-    borderRadius: 20,
+    borderRadius: 12,
     alignItems: "center",
-    textAlign: "center",
+    justifyContent: "center",
+    // Modern shadow
+    shadowColor: "#4F46E5",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 8,
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
+    fontSize: 16,
+    fontWeight: "600",
+    letterSpacing: 0.5,
   },
 });

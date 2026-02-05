@@ -9,16 +9,22 @@ export default function Index() {
   const { todos } = useContext(TodoContext);
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.todoContainer}>
-      <Text style={styles.todoHeader}>TODOS</Text>
-        {todos.slice().reverse().map((todo) => (
-          <Card key={todo.id} todo={todo} />
-        ))}
+      <ScrollView contentContainerStyle={styles.todoListContent} style={styles.todoContainer}>
+      <Text style={styles.todoHeader}>My Tasks</Text>
+        {todos.length > 0 ? (
+          todos.slice().reverse().map((todo) => (
+            <Card key={todo.id} todo={todo} />
+          ))
+        ) : (
+          <View style={styles.emptyState}>
+             <Text style={styles.emptyText}>No tasks yet. Add one!</Text>
+          </View>
+        )}
       </ScrollView>
-      <View>
+      <View style={styles.footer}>
         <Link asChild href="/create">
           <AppButton onPress={() => {}} >
-            Create Todo
+            + New Task
           </AppButton>
         </Link>
       </View>
@@ -29,16 +35,38 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    justifyContent: "space-between",
-    paddingTop: 25,
+    backgroundColor: "#F8FAFC",
   },
   todoContainer: {
-    marginVertical: 10,
-    padding: 10,
+    flex: 1,
+    paddingHorizontal: 20,
+    marginTop: 20,
+  },
+  todoListContent: {
+    paddingBottom: 100,
   },
   todoHeader: {
-    fontSize: 24,
-    fontWeight: "bold",
+    fontSize: 34,
+    fontWeight: "800",
+    color: "#1F2937",
+    marginBottom: 20,
+    marginTop: 40,
+    letterSpacing: -1,
   },
+  footer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'transparent',
+    padding: 10,
+  },
+  emptyState: {
+    marginTop: 100,
+    alignItems: 'center',
+  },
+  emptyText: {
+    color: '#9CA3AF',
+    fontSize: 16,
+  }
 });

@@ -19,22 +19,26 @@ const CreateTodo = () => {
   };
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>createTodo</Text>
+      <Text style={styles.headerText}>New Task</Text>
 
       <View style={styles.formContainer}>
         <TextInput
-          label="Add a new todo"
+          label="What needs to be done?"
           style={styles.todoInput}
           value={todo}
           onChangeText={(text) => setTodo(text)}
           mode="outlined"
           placeholder="Enter your todo"
-          textColor="#000000"
-          
+          textColor="#1F2937"
+          activeOutlineColor="#4F46E5"
+          outlineColor="#E5E7EB"
+          theme={{ roundness: 12 }}
         />
-      <AppButton onPress={handleAddTodo} >
-        Add Todo
-      </AppButton>
+        <View style={styles.buttonContainer}>
+            <AppButton onPress={handleAddTodo} >
+                Create Task
+            </AppButton>
+        </View>
       </View>
     </View>
   );
@@ -45,21 +49,25 @@ export default CreateTodo;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    padding: 10,
+    backgroundColor: "#F8FAFC",
+    padding: 24,
   },
   headerText: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginTop: 20,
+    fontSize: 32,
+    fontWeight: "800",
+    color: "#1F2937",
+    marginBottom: 32,
+    marginTop: 40,
+    letterSpacing: -1,
   },
   formContainer: {
-    marginVertical: 20,
-    gap: 10,
+    gap: 24,
   },
   todoInput: {
     fontSize: 16,
-    backgroundColor: "#ffffff",
-    borderRadius: 8,
+    backgroundColor: "#FFFFFF",
   },
+  buttonContainer: {
+    marginTop: 8,
+  }
 });
